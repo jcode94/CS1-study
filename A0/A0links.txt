@@ -1,0 +1,35 @@
+
+For loop:
+	https://www.tutorialspoint.com/cprogramming/c_loops.htm
+
+If/Else Loop:
+	https://www.tutorialspoint.com/cprogramming/if_else_statement_in_c.htm
+		Note the flow diagram on this page. You will see this method of visualization of logic repeatedly 
+		throughout ALL your time coding. There is a reason. It is a simple and effective way to organize concepts.
+		I highly recommend you try to make one yourself for this project. Time spent coding should be the least 
+		of your efforts. Time spent building sound logic should be where you invest most of your time.
+
+Array:
+	https://www.tutorialspoint.com/cprogramming/c_arrays.htm
+
+Strings:
+	https://www.tutorialspoint.com/cprogramming/c_strings.htm
+
+printf():
+	https://www.tutorialspoint.com/c_standard_library/c_function_printf.htm
+
+scanf():
+	https://www.tutorialspoint.com/c_standard_library/c_function_scanf.htm
+
+fgets(): 
+	https://www.tutorialspoint.com/c_standard_library/c_function_fgets.htm
+
+getchar():
+	https://www.tutorialspoint.com/c_standard_library/c_function_getchar.htm
+
+
+
+
+
+
+

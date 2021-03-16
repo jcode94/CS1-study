@@ -1,0 +1,32 @@
+// Justice Smith 2.17.21 COP3502
+
+
+// Essentially, we do two log(n) binary searches for the index of the element
+// with a price that is <= max and >= min and then we return the difference + 1
+// for the # of hotels that are within the range acceptable.
+
+int hotels(int min, int max, int * pricePerNights, int N) {
+	int numAffordable;
+	int smallestButLarger, largestButSmaller;
+	int low, high;
+	
+	// Not sure how, without the bounds of the array, we can find a given position
+	// So, like in BSearch, we use the start mid and end. But here we have
+	// two relevant target values and only a number of elements in the array
+	// which changes between end and start(for finding an index in the right half)
+		
+	int mid = N / 2;
+
+	// Finding left half index
+	if (pricePerNights[mid] >= min)
+		smallestButLarger = hotels(min, max, pricePerNights, mid - 1);
+		
+	// Finding right half index
+	if (pricePerNights[mid] <= max)
+		largestButSmaller = hotels(min, max, pricePerNights, mid);
+		
+	// Inclusive sum
+	numAffordable = (largestButSmaller - smallestButLarger) + 1;
+	
+	return numAffordable;
+}

@@ -71,15 +71,16 @@ int main()
         {   
             MVP = strdup(peek(Stack));
             printf("%s\n", MVP);
+            free(MVP);
         }
 
-        // printList(head);
+        // printList(head); 
         scanf("%d", &t);
     }
 
     
     free(S);
-    free(MVP);
+    
     destroyStack(Stack);
 
     return 0;

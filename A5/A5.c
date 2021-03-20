@@ -69,6 +69,11 @@ int main()
         }
         else // peek MVP
         {   
+            // Don't segfault when attempting access top of stack
+            if (peek(Stack) == NULL) {
+                scanf("%d", &t);
+                continue;
+            }
             MVP = strdup(peek(Stack));
             printf("%s\n", MVP);
             free(MVP);
@@ -78,17 +83,16 @@ int main()
         scanf("%d", &t);
     }
 
-    
+    // Freeing the name buffer
     free(S);
-    
     destroyStack(Stack);
 
     return 0;
 }
 
 // Pre-condition: head points to the head of a linked list
-// Post-condition: head points to the new head of the linked list, after removal of head
-//                 and previous head pointer memory freed.
+// Post-condition: head points to the new head of the linked list, 
+// after removal of head and previous head pointer memory freed.
 void pop(Stack* Stack)
 {
     Node* tempNode;

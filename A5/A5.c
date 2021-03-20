@@ -67,6 +67,7 @@ int main()
         scanf("%d", &t);
     }
 
+    head = destroyStack(head);
     free(S);
 
     return 0;
@@ -162,4 +163,10 @@ Node* createNode(char* S, int M)
     ret->next = NULL;
 
     return ret;
+}
+
+Node *destroyStack(Node *head) {
+    while (peek(head) != NULL)
+        head = pop(head);
+    return NULL;
 }

@@ -20,6 +20,7 @@
 #define LEN_NAME 20
 
 typedef struct Node Node;
+typedef struct Stack Stack;
 
 struct Node 
 {
@@ -28,18 +29,27 @@ struct Node
     Node* next;
 };
 
+struct Stack
+{
+    Node* head;
+};
+
 Node* createNode(char* S, int M);
-Node* pop(Node* head);
-Node* push(Node* head, char* S, int M);
-char* peek(Node* head);
-void printList(Node* node);
+void pop(Stack* Stack);
+void push(Stack* Stack, char* S, int M);
+char* peek(Stack* Stack);
+void printList(Stack* Stack);
+void destroyStack(Stack* Stack);
 
 int main()
 {
     int t, M;
-    // S is buffer
-    char* S, MVP;
-    Node* head = NULL;
+    // S is buffer, program specs ask for S
+    char* S;
+    char* MVP;
+    
+    Stack* Stack = malloc(sizeof(Stack));
+    Stack->head = NULL;
 
     // lenName specifications + 1 spot for NTC
     S = malloc((LEN_NAME + 1) * sizeof(char));
@@ -51,24 +61,26 @@ int main()
         if (t == 1) // enter(push) player
         {
             scanf("%d %s", &M, S);
-            head = push(head, S, M);
+            push(Stack, S, M);
         }
         else if (t == 2) // exit(pop) player
         {
-            head = pop(head);
+            pop(Stack);
         }
         else // peek MVP
         {   
-            S = strdup(peek(head));
-            printf("%s\n", S);
+            MVP = strdup(peek(Stack));
+            printf("%s\n", MVP);
         }
 
         // printList(head);
         scanf("%d", &t);
     }
 
-    head = destroyStack(head);
+    
     free(S);
+    free(MVP);
+    destroyStack(Stack);
 
     return 0;
 }
@@ -76,79 +88,80 @@ int main()
 // Pre-condition: head points to the head of a linked list
 // Post-condition: head points to the new head of the linked list, after removal of head
 //                 and previous head pointer memory freed.
-Node* pop(Node* head)
+void pop(Stack* Stack)
 {
     Node* tempNode;
 
     //  Empty list
-    if (head == NULL)
+    if (Stack->head == NULL)
     {
-        return NULL;
+        return;
     }
 
     // Grabbing address to head element to free later
-    tempNode = head;
+    tempNode = Stack->head;
 
     // Closing the gap between head pointer and second element
-    head = head->next;
-
+    Stack->head = Stack->head->next;
+  
+    free(tempNode->name);
     free(tempNode);
 
-    return head;
+    return;
 }
 
 // Pre-condition: head points to the head of a linked list
 // Post-condition: either a new MVP has been added to the list or 
 //                 a duplicate of the current MVP has been added
 //                 to the head.
-Node* push(Node* head, char* S, int M)
+void push(Stack* Stack, char* S, int M)
 {
     Node* tempNode;
     
     // List empty
-    if (head == NULL)
+    if (Stack->head == NULL)
     {
-        head = createNode(S, M);
-        return head;
+        Stack->head = createNode(S, M);
+        return;
     }
     // New MVP
-    if (M >= head->tokens)
+    if (M >= Stack->head->tokens)
         tempNode = createNode(S, M);
 
     // Same MVP
     else
         // Create duplicate of current MVP
-        tempNode = createNode(head->name, head->tokens); 
+        tempNode = createNode(Stack->head->name, Stack->head->tokens); 
 
-    tempNode->next = head;
-    head = tempNode;  
+    tempNode->next = Stack->head;
+    Stack->head = tempNode;  
 
-    return head;
+    return;
 }
 
 // Pre-condition: head points to the head of a linked list
 // Post-condition: list is same, name of element at top of stack is returned
-char* peek(Node* head)
+char* peek(Stack* Stack)
 {
-    if (head == NULL)
+    if (Stack->head == NULL)
         return NULL;
 
-    return head->name;
+    return Stack->head->name;
 }
 
 // Pre-condition: head points to the head of a linked list
 // Post-condition: no change, list nodes outputted to console
-void printList(Node* head)
+void printList(Stack* Stack)
 {
-    if (head == NULL)
+    if (Stack->head == NULL)
     {
         printf("List empty\n");
         return;
     }
-    while (head != NULL)
+    while (Stack->head != NULL)
     {
-        printf("%s(%d)->", head->name, head->tokens);
-        head = head->next;
+        printf("%s(%d)->", Stack->head->name, Stack->head->tokens);
+        Stack->head = Stack->head->next;
     }
     printf("\n");
 }
@@ -165,8 +178,8 @@ Node* createNode(char* S, int M)
     return ret;
 }
 
-Node *destroyStack(Node *head) {
-    while (peek(head) != NULL)
-        head = pop(head);
-    return NULL;
+void destroyStack(Stack* Stack) {
+    while (peek(Stack) != NULL)
+        pop(Stack);
+    free(Stack);
 }

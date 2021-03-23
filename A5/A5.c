@@ -4,7 +4,7 @@
 
 // Theory:
 //     On 1, we add either: 
-//         new player info iff numTokens > MVP->numTokens 
+//         new player info iff numTokens >= MVP->numTokens 
 //         OR 
 //         a duplicate(placeholder) MVP node
 //

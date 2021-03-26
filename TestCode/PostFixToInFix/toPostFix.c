@@ -169,3 +169,4 @@ int findPrec(char value) {
 		return 1;
 	if (value == IMPOSSIBLE)
 		return 0;
+}

@@ -1,5 +1,27 @@
 {
     "files.associations": {
         "string.h": "c"
+    },
+    "terminal.integrated.env.windows": {
+        
+    
+    },
+    "terminal.integrated.profiles.linux": {
+
+        "bash": {
+            "path": "bash"
+        },
+        "zsh": {
+            "path": "zsh"
+        },
+        "fish": {
+            "path": "fish"
+        },
+        "tmux": {
+            "path": "tmux"
+        },
+        "pwsh": {
+            "path": "pwsh"
+        }
     }
 }

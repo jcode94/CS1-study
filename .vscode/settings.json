@@ -1,6 +1,7 @@
 {
     "files.associations": {
-        "string.h": "c"
+        "string.h": "c",
+        "A7.C": "cpp"
     },
     "terminal.integrated.env.windows": {
         
@@ -23,5 +24,8 @@
         "pwsh": {
             "path": "pwsh"
         }
-    }
+    },
+    "cSpell.words": [
+        "k'th"
+    ]
 }

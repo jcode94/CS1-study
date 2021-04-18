@@ -1,0 +1,4 @@
+Heap is a special tree-based data structure in which the tree is a complete Binary Tree. 
+Two types(generally):
+Max-heap: root value is greatest of all its children. Recursively true.
+Min-heap: root value is least of all its children. Recursively true.
